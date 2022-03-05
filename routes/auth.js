@@ -62,7 +62,6 @@ router.post("/register", async (req, res) => {
 // @desc Login user and return a access token
 // @access Public
 router.post("/login", async (req, res) => {
-  console.log("I am here ");
   try {
     //check for the user
     const user = await User.findOne({
