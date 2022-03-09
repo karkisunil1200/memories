@@ -1,11 +1,12 @@
 import Layout from "./components/Layout";
+import { GlobalProvider } from "./context/GlobalContext";
 import "./main.scss";
 
 function App() {
   return (
-    <div className="App">
+    <GlobalProvider>
       <Layout />
-    </div>
+    </GlobalProvider>
   );
 }
 

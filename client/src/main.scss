@@ -72,6 +72,12 @@ textarea {
   border-radius: 5px;
   font-size: 143m;
   transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
 
   &:hover {
     background-color: $primary-dark;
@@ -141,4 +147,32 @@ textarea {
     margin-top: 10px;
     color: $red;
   }
+
+  &__register {
+    text-align: center;
+    margin-top: 20px;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: $white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.loading {
+  min-width: 100wh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
