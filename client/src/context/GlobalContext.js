@@ -98,11 +98,41 @@ export const GlobalProvider = (props) => {
     });
   };
 
+  const toDoComplete = (toDo) => {
+    dispatch({
+      type: "SET_INCOMPLETE_TODOS",
+      payload: state.incompleteToDos.filter(
+        (incompleteToDo) => incompleteToDo._id !== toDo._id
+      ),
+    });
+
+    dispatch({
+      type: "SET_COMPLETE_TODOS",
+      payload: [toDo, ...state.completeToDos],
+    });
+  };
+
+  const toDoIncomplete = (toDo) => {
+    dispatch({
+      type: "SET_COMPLETE_TODOS",
+      payload: state.completeToDos.filter(
+        (completeToDo) => completeToDo._id !== toDo._id
+      ),
+    });
+
+    dispatch({
+      type: "SET_INCOMPLETE_TODOS",
+      payload: [toDo, ...state.incompleteToDos],
+    });
+  };
+
   const value = {
     ...state,
     getCurrentUser,
     logout,
     addToDo,
+    toDoComplete,
+    toDoIncomplete,
   };
 
   return (
