@@ -1,16 +1,23 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 
 const AuthBox = ({ register }) => {
-  const { getCurrentUser } = useGlobalContext();
+  const { getCurrentUser, user } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, , setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user && navigate) {
+      navigate("/dashboard");
+    }
+  }, [user]);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -99,7 +106,11 @@ const AuthBox = ({ register }) => {
           )}
 
           <div className="auth__footer">
-            <div className="auth__error">Something went wrong</div>
+            {Object.keys(errors).length > 0 && (
+              <p className="auth__error">
+                {register ? "you have some valdiation error" : errors.error}
+              </p>
+            )}
             <button className="btn" type="submit" disabled={loading}>
               {register ? "Register" : "Login"}
             </button>
