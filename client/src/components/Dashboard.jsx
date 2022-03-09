@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
+import NewToDo from "./NewToDo";
 import ToDoCard from "./ToDoCard";
 
 const Dashboard = () => {
@@ -15,6 +16,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <NewToDo />
       <div className="todos">
         {incompleteToDos.map((toDo) => (
           <ToDoCard toDo={toDo} key={toDo._id} />
